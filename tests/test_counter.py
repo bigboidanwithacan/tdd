@@ -47,6 +47,8 @@ class CounterTest(TestCase):
         self.assertEqual(update_result.status_code, 200)
         updated_value = update_result.json['dan']
         self.assertEqual(updated_value, baseline_value + 1)
+        result = self.client.put('/counters/unknown')
+        self.assertEqual(result.status_code, status.HTTP_404_NOT_FOUND)
         
     def test_get_a_counter(self):
         """It should return the value of the counter"""
@@ -55,3 +57,7 @@ class CounterTest(TestCase):
         get_result = self.client.get('/counters/alex')
         self.assertEqual(get_result.status_code, 200)
         self.assertEqual(get_result.json['alex'], 0)
+        result = self.client.get('/counters/unknown')
+        self.assertEqual(result.status_code, status.HTTP_404_NOT_FOUND)
+        
+        
