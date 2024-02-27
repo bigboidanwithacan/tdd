@@ -24,3 +24,14 @@ jobs:
 
     - name: Run unit tests with nose
       run:  nosetests -v --with-spec --spec-color --with-coverage --cover-package=app
+
+    - name: Static Code Analysis with Bandit
+      run: pip install bandit | bandit -r src
+    
+    - name: Install Snyk
+      run: |
+        curl -fsSL https://cli.snyk.io/install.sh | sh
+        echo "$HOME/.config/snyk" >> $GITHUB_PATH
+
+    - name: Dependency Security Scanning with Snyk
+      run: snyk test --all-projects
