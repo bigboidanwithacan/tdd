@@ -30,5 +30,13 @@ jobs:
 
     - name: Check for Security Vulnerabilities with Safety
       run: safety check --full-report
-    
+      
+    - name: Install dependencies
+      run: |
+        python -m pip install -r requirements.txt
+        python -m pip install safety
+
+    - name: Check for vulnerabilities
+      run: |
+        safety check -r requirements.txt
     
