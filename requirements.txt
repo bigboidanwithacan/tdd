@@ -5,3 +5,5 @@ pinocchio
 coverage
 pylint
 flake8
+bandit
+snyk
