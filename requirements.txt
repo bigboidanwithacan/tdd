@@ -6,4 +6,3 @@ coverage
 pylint
 flake8
 bandit
-safety
