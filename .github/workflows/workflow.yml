@@ -28,5 +28,7 @@ jobs:
     - name: Static Code Analysis with Bandit
       run: bandit -r src
 
-    - name: Dependency Security Scanning with Snyk
-      run: snyk test --all-projects
+    - name: Check for Security Vulnerabilities with Safety
+      run: safety check --full-report
+    
+    
